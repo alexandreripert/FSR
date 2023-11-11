@@ -149,13 +149,13 @@ public class DAOContact implements IDAOContact {
 		*/
 		
 		//JPQL + FETCH 
-		String requete="Select c FROM Contact c JOIN FETCH c.phones WHERE c.idContact=:id" ;
+		String requete="Select c FROM Contact c WHERE c.idContact=:id" ;
 		TypedQuery<Contact> query=em.createQuery(requete,Contact.class);
 		query.setParameter("id", id);
 		List<Contact> listcontacts= query.getResultList();
 			c=listcontacts.get(0);
 			System.out.println(c);
-			c.getPhones().forEach(x->System.out.println(x.getPhoneNumber()));
+			//c.getPhones().forEach(x->System.out.println(x.getPhoneNumber()));
 			
 		
 	   /*   
