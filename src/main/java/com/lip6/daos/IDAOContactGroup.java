@@ -10,5 +10,6 @@ public interface IDAOContactGroup {
 	public int deleteContactGroup(long id);
 	public ContactGroup getContactGroup(long id);
 	public boolean modifyContactGroup(long id, String groupname);
+	public boolean addContactToGroup(long contactId, long groupId);
 
 }

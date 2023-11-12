@@ -132,5 +132,35 @@ public class DAOContactGroup implements IDAOContactGroup {
 		}
 		return success;
 	}
+	
+	public boolean addContactToGroup(long contactId, long groupId) {
+        EntityManager em = JpaUtil.getEmf().createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        boolean success = false;
+        
+        try {
+            tx.begin();
+            
+            Contact contact = em.find(Contact.class, contactId);
+            ContactGroup group = em.find(ContactGroup.class, groupId);
+            
+            group.getContacts().add(contact);
+            contact.getContactGroups().add(group);
+            
+            em.merge(group);
+            
+            tx.commit();
+            success = true;
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        
+        return success;
+    }
 
 }

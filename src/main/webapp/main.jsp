@@ -15,5 +15,6 @@
 <a href="deleteContactGroup.jsp"><h1>Delete a group</h1></a>
 <a href="updateContactGroup.jsp"><h1>Update a group</h1></a>
 <a href="idsearchgroup.jsp"><h1>Search a group by ID</h1></a>
+<a href="addContactToGroup.jsp"><h1>Add contact to a group</h1></a>
 </body>
 </html>

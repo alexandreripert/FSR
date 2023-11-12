@@ -11,4 +11,5 @@ public interface IServiceContactGroup {
 	public void deleteContactGroup(long id);
 	public void updateContactGroup(long id,String groupname);
 	public void searchIDContactGroup(long id);
+	public boolean addContactToGroup(long contactId, long groupId);
 }

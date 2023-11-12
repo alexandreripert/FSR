@@ -2,8 +2,12 @@ package com.lip6.services;
 
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lip6.daos.IDAOContactGroup;
 import com.lip6.entities.Address;
@@ -13,7 +17,7 @@ import com.lip6.entities.PhoneNumber;
 
 @Service
 public class ServiceContactGroup implements IServiceContactGroup {
-
+	
 private IDAOContactGroup daocg;
 	
 	@Autowired
@@ -61,5 +65,9 @@ public void searchIDContactGroup(long id) {
        System.out.println("Aucun groupe trouvé avec l'ID : " + id);
    }
    
+}
+
+public boolean addContactToGroup(long contactId, long groupId) {
+    return daocg.addContactToGroup(contactId, groupId);
 }
 }
