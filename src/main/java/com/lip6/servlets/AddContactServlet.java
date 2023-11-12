@@ -81,7 +81,7 @@ public class AddContactServlet extends HttpServlet {
         	c.setFirstName(fname);
         	c.setLastName(lname);
 
-		 Address a = (Address) context.getBean("Address");
+		 Address a = new Address();
 		 	a.setCity(city);
 		 	a.setStreet(street);
 		 	a.setCountry(country);

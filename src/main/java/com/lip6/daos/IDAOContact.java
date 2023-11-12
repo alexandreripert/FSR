@@ -12,7 +12,7 @@ public interface IDAOContact {
 	//public  boolean addContact(long idContact, String firstname, String lastname, String email);
 	
 	
-	public boolean addContact(Contact c, Address a);
+	public boolean addContact(Contact c);
 	public int deleteContact(long id);
 	
 	public Contact getContact(long id);

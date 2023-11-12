@@ -34,7 +34,7 @@ public class ServiceContact implements IServiceContact {
 		        c.getPhones().add(phone);
 		    }
 	
-		boolean ok=daoc.addContact(c, a);
+		boolean ok=daoc.addContact(c);
 		if (ok)
 			System.out.println("Contact ajout�!");
 		else

@@ -25,8 +25,4 @@
 
 </bean>
 
-<bean id="Address" class="com.lip6.entities.Address" scope="prototype">
-
-</bean>
-
 </beans>
