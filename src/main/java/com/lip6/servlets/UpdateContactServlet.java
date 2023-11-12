@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.entities.Address;
 import com.lip6.services.IServiceContact;
 import com.lip6.services.ServiceContact;
 
@@ -47,12 +48,20 @@ public class UpdateContactServlet extends HttpServlet {
 		String fname=request.getParameter("fname");
 		String lname=request.getParameter("lname");
 		String email=request.getParameter("email"); 
+	    String street = request.getParameter("street");
+	    String city = request.getParameter("city");
+	    String zip = request.getParameter("zip");
+	    String country = request.getParameter("country");
 		
-		
+	    Address newAddress = new Address();
+	    newAddress.setStreet(street);
+	    newAddress.setCity(city);
+	    newAddress.setZip(zip);
+	    newAddress.setCountry(country);
 		
 		//ServiceContact src=new ServiceContact();
 		IServiceContact service= (ServiceContact) context.getBean("serviceContact");
-		service.updateContact(id, fname, lname, email);
+		service.updateContact(id, fname, lname, email, newAddress);
 	}
 
 }

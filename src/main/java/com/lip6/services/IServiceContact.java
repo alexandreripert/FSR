@@ -11,7 +11,7 @@ public interface IServiceContact {
 	
 	public void deleteContact(long id) ;
 	
-	public void updateContact(long id,String firstname, String lastname,String email);
+	public void updateContact(long id,String firstname, String lastname,String email, Address address);
 	
 	public void searchIDContact(long id);
 

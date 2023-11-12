@@ -46,10 +46,10 @@ public class ServiceContact implements IServiceContact {
 		
 	}
 	
-public void updateContact(long id,String firstname, String lastname,String email) {
+public void updateContact(long id,String firstname, String lastname,String email, Address address) {
 		
 		
-		 boolean ok=daoc.modifyContact(id, firstname, lastname, email);
+		 boolean ok=daoc.modifyContact(id, firstname, lastname, email, address);
 		if (ok)
 			System.out.println("Contact modifié!");
 		else
@@ -61,9 +61,14 @@ public void searchIDContact(long id) {
 	Contact ok = daoc.getContact(id);
     if (ok != null) {
         System.out.println(ok.getIdContact() + "," + ok.getFirstName() + "," + ok.getLastName() + "," + ok.getEmail());
+        if (ok.getAddress() != null) {
+            Address a = ok.getAddress();
+            System.out.println("Adresse: " + a.getStreet() + ", " + a.getCity() + ", " + a.getZip() + ", " + a.getCountry());
+        }
     } else {
         System.out.println("Aucun contact trouvé avec l'ID : " + id);
     }
+    
 }
 
 }

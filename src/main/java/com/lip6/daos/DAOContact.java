@@ -150,7 +150,7 @@ public class DAOContact implements IDAOContact {
 		*/
 		
 		//JPQL + FETCH 
-		String requete="Select c FROM Contact c WHERE c.idContact=:id" ;
+		String requete="Select c FROM Contact c LEFT JOIN FETCH c.address WHERE c.idContact=:id" ;
 		TypedQuery<Contact> query=em.createQuery(requete,Contact.class);
 		query.setParameter("id", id);
 		List<Contact> listcontacts= query.getResultList();
@@ -187,7 +187,7 @@ public class DAOContact implements IDAOContact {
 	 * @return
 	 */
 	@Override
-	public boolean modifyContact(long id, String firstname, String lastname, String email) {
+	public boolean modifyContact(long id, String firstname, String lastname, String email, Address newAddress) {
 		boolean success = false;
 	
 		try {
@@ -203,8 +203,12 @@ public class DAOContact implements IDAOContact {
 				c.setFirstName(firstname);
 				c.setLastName(lastname);
 				c.setEmail(email);
-				c.setAddress(null);
-					
+				
+				Address address = c.getAddress();
+				address.setStreet(newAddress.getStreet());
+                address.setCity(newAddress.getCity());
+                address.setZip(newAddress.getZip());
+                address.setCountry(newAddress.getCountry());
 				
 				
 				
