@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -186,7 +188,7 @@ public class DAOContact implements IDAOContact {
 	 * @return
 	 */
 	@Override
-	public boolean modifyContact(long id, String firstname, String lastname, String email, Address newAddress) {
+	public boolean modifyContact(long id, String firstname, String lastname, String email, Address newAddress, PhoneNumber phone, PhoneNumber phone2) {
 		boolean success = false;
 	
 		try {
@@ -208,9 +210,21 @@ public class DAOContact implements IDAOContact {
                 address.setCity(newAddress.getCity());
                 address.setZip(newAddress.getZip());
                 address.setCountry(newAddress.getCountry());
-				
-				
-				
+                
+                Set<PhoneNumber> phoneNumbers = c.getPhones();
+
+                Iterator<PhoneNumber> iterator = phoneNumbers.iterator();
+                if (iterator.hasNext()) {
+                    PhoneNumber phone1 = iterator.next();
+                    phone1.setPhoneKind(phone.getPhoneKind());
+                    phone1.setPhoneNumber(phone.getPhoneNumber());
+                }
+                if (iterator.hasNext()) {
+                    PhoneNumber phone22 = iterator.next();
+                    phone22.setPhoneKind(phone2.getPhoneKind());
+                    phone22.setPhoneNumber(phone2.getPhoneNumber());
+                }
+
 				
 				// 5 : Fermeture transaction 
 				tx.commit();

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Recherche par ID</title>
+<title>Insert title here</title>
 </head>
-<form method="post" action="SearchByIdServelt">
+<form method="post" action="SearchGroupByIdServelt">
 <table>
 			<tr>
 				<th><h2>Entrez l'ID</h2></th>
@@ -18,4 +18,5 @@
 				</tr>
 				
 </table>
+</form>
 </html>

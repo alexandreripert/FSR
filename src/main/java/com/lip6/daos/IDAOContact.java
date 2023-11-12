@@ -17,7 +17,7 @@ public interface IDAOContact {
 	
 	public Contact getContact(long id);
 	
-	public boolean modifyContact(long id, String firstname, String lastname, String email, Address address);
+	public boolean modifyContact(long id, String firstname, String lastname, String email, Address address, PhoneNumber phone, PhoneNumber phone2);
 	
 	public ArrayList<Contact> getContactByFirstName(String firstname);
 	

@@ -10,11 +10,11 @@ import com.lip6.entities.PhoneNumber;
 
 public interface IServiceContact {
 	
-	public void createContact(Contact c, Address a, Set<PhoneNumber> p) ;
+	public void createContact(Contact c, Address a, Set<PhoneNumber> p);
 	
-	public void deleteContact(long id) ;
+	public void deleteContact(long id);
 	
-	public void updateContact(long id,String firstname, String lastname,String email, Address address);
+	public void updateContact(long id,String firstname, String lastname,String email, Address address, PhoneNumber phone, PhoneNumber phone2);
 	
 	public void searchIDContact(long id);
 

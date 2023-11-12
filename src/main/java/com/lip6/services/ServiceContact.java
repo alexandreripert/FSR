@@ -54,10 +54,10 @@ public class ServiceContact implements IServiceContact {
 		
 	}
 	
-public void updateContact(long id,String firstname, String lastname,String email, Address address) {
+public void updateContact(long id,String firstname, String lastname,String email, Address address, PhoneNumber phone, PhoneNumber phone2) {
 		
 		
-		 boolean ok=daoc.modifyContact(id, firstname, lastname, email, address);
+		 boolean ok=daoc.modifyContact(id, firstname, lastname, email, address, phone, phone2);
 		if (ok)
 			System.out.println("Contact modifié!");
 		else

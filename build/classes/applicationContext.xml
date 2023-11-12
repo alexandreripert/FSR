@@ -19,9 +19,13 @@
     <context:annotation-config/> -->
 
 <bean id="cdao" class="com.lip6.daos.DAOContact"/>
+<bean id="cgdao" class="com.lip6.daos.DAOContactGroup"/>
 
 
 <bean id="Contact2" class="com.lip6.entities.Contact" scope="prototype">
+
+</bean>
+<bean id="ContactGroup" class="com.lip6.entities.ContactGroup" scope="prototype">
 
 </bean>
 

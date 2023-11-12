@@ -4,18 +4,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Recherche par ID</title>
+<title>Insert title here</title>
 </head>
-<form method="post" action="SearchByIdServelt">
-<table>
+<form method="post" action="DeleteContactGroupServlet">
+		<table>
 			<tr>
-				<th><h2>Entrez l'ID</h2></th>
+				<th><h2>Voici un premier exemple de composant web avec un servlet</h2></th>
 				<tr>
 					<td><i>id: <input type="text" name="id" size="25"></i></td>
 				</tr>
+				
 				<tr>
 					<td><input class="button" type="submit" value="Submit" /><input class="button" type="reset" value="Reset"></td>
 				</tr>
-				
-</table>
+			
+		</table>
+	</form>
 </html>

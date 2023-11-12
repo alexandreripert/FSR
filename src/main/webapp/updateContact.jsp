@@ -34,6 +34,18 @@
 				<tr>
 					<td><i>Street: <input type="text" name="street" size="25"></i></td>
 				</tr>
+								<tr>
+					<td><i>Phonekind: <input type="text" name="phonekind" size="25"></i></td>
+				</tr>
+				<tr>
+					<td><i>PhoneNumber: <input type="text" name="phonenumber" size="25"></i></td>
+				</tr>
+				<tr>
+					<td><i>PhoneKind2: <input type="text" name="phonekind2" size="25"></i></td>
+				</tr>
+				<tr>
+					<td><i>PhoneNumber2: <input type="text" name="phonenumber2" size="25"></i></td>
+				</tr>
 				
 				<tr>
 					<td><input class="button" type="submit" value="Submit" /><input class="button" type="reset" value="Reset"></td>
