@@ -3,11 +3,8 @@ package com.lip6.services;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.lip6.daos.DAOContact;
 import com.lip6.daos.IDAOContact;
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
@@ -65,7 +62,7 @@ public void updateContact(long id,String firstname, String lastname,String email
 		
 	}
 
-public void searchIDContact(long id) {
+public Contact searchIDContact(long id) {
 	Contact ok = daoc.getContact(id);
     if (ok != null) {
         System.out.println(ok.getIdContact() + "," + ok.getFirstName() + "," + ok.getLastName() + "," + ok.getEmail());
@@ -76,7 +73,7 @@ public void searchIDContact(long id) {
     } else {
         System.out.println("Aucun contact trouvé avec l'ID : " + id);
     }
-    
+    return daoc.getContact(id);
 }
 
 }

@@ -2,18 +2,17 @@ package com.lip6.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.entities.ContactGroup;
-import com.lip6.services.IServiceContact;
 import com.lip6.services.IServiceContactGroup;
 import com.lip6.services.ServiceContactGroup;
 
@@ -22,8 +21,6 @@ public class AddContactGroupServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	private IServiceContact serviceContactGroup;
 	
 	public AddContactGroupServlet() {
         super();
@@ -51,8 +48,10 @@ public class AddContactGroupServlet extends HttpServlet {
 
 	        	IServiceContactGroup serviceGroup= (ServiceContactGroup) context.getBean("serviceContactGroup");
 	            
-	            
 	            serviceGroup.createContactGroup(cg);
+	            
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("menuGroup.jsp");
+	            dispatcher.forward(request, response);
 		}
 	}
 

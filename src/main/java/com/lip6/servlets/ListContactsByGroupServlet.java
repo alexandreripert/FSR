@@ -1,6 +1,7 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,29 +13,36 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.entities.Contact;
 import com.lip6.services.IServiceContactGroup;
 import com.lip6.services.ServiceContactGroup;
 
-@WebServlet("/AddContactToGroupServlet")
-public class AddContactToGroupServlet extends HttpServlet {
-
+@WebServlet("/ListContactsByGroupServlet")
+public class ListContactsByGroupServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long contactId = Long.parseLong(request.getParameter("contactId"));
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+	}
+    
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long groupId = Long.parseLong(request.getParameter("groupId"));
-
+        
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
         IServiceContactGroup serviceContactGroup= (ServiceContactGroup) context.getBean("serviceContactGroup");
         
-        if(serviceContactGroup.addContactToGroup(contactId, groupId)) {
-            System.out.println("Contact ajouté au groupe !");
-        } else {
-            System.out.println("Échec de l'ajout du contact au groupe.");
+        Set<Contact> contacts = serviceContactGroup.listContactsByGroup(groupId);
+
+        for (Contact contact : contacts) {
+            System.out.println(contact.getFirstName() + " " + contact.getLastName());
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("menuGroup.jsp");
+        
+        request.setAttribute("contacts", contacts); // Ajouter les contacts à la requête
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("listContacts.jsp");
         dispatcher.forward(request, response);
     }
 }
-

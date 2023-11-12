@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.entities.Contact;
 import com.lip6.services.IServiceContact;
 import com.lip6.services.ServiceContact;
 
@@ -50,6 +53,15 @@ public class SearchByIdServelt extends HttpServlet {
 		//ServiceContact src=new ServiceContact();
 		IServiceContact service= (ServiceContact) context.getBean("serviceContact");
 		service.searchIDContact(id);
+		Contact contact = service.searchIDContact(id);
+		
+		if (contact != null) {
+	        request.setAttribute("contact", contact); 
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/showContact.jsp"); 
+	        dispatcher.forward(request, response);
+	    } else {
+	        response.getWriter().write("Aucun contact trouvé avec l'ID : " + id);
+	    }
 		
 
 	}

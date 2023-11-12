@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Rechercher un groupe</title>
+<title>Rechercher contacts d'un groupe</title>
 </head>
-<form method="post" action="SearchGroupByIdServelt">
+<form method="post" action="ListContactsByGroupServlet">
 <table>
 			<tr>
-				<th><h2>Rechercher un groupe</h2></th>
+				<th><h2>Rechercher contacts d'un groupe</h2></th>
 				<tr>
-					<td><i>id du groupe: <input type="text" name="id" size="25"></i></td>
+					<td><i>id du groupe: <input type="text" name="groupId" size="25"></i></td>
 				</tr>
 				<tr>
 					<td><input class="button" type="submit" value="Submit" /><input class="button" type="reset" value="Reset"></td>

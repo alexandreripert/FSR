@@ -1,6 +1,7 @@
 package com.lip6.daos;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -161,6 +162,19 @@ public class DAOContactGroup implements IDAOContactGroup {
         }
         
         return success;
+    }
+	
+	public Set<Contact> getContactsByGroupId(long groupId) {
+        EntityManager em = JpaUtil.getEmf().createEntityManager();
+        try {
+            TypedQuery<ContactGroup> query = em.createQuery(
+                "SELECT cg FROM ContactGroup cg JOIN FETCH cg.contacts WHERE cg.groupId = :groupId", ContactGroup.class);
+            query.setParameter("groupId", groupId);
+            ContactGroup contactGroup = query.getSingleResult();
+            return contactGroup.getContacts();
+        } finally {
+            em.close();
+        }
     }
 
 }

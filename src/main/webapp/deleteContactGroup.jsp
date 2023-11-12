@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Supprimer un groupe</title>
 </head>
 <form method="post" action="DeleteContactGroupServlet">
 		<table>
 			<tr>
-				<th><h2>Voici un premier exemple de composant web avec un servlet</h2></th>
+				<th><h2>Supprimer un groupe</h2></th>
 				<tr>
-					<td><i>id: <input type="text" name="id" size="25"></i></td>
+					<td><i>id du groupe: <input type="text" name="id" size="25"></i></td>
 				</tr>
 				
 				<tr>

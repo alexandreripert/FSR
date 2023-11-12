@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,6 +78,9 @@ public class UpdateContactServlet extends HttpServlet {
 		//ServiceContact src=new ServiceContact();
 		IServiceContact service= (ServiceContact) context.getBean("serviceContact");
 		service.updateContact(id, fname, lname, email, newAddress, newPhone, newPhone2);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("menuContact.jsp");
+        dispatcher.forward(request, response);
 	}
 
 }

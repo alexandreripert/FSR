@@ -4,48 +4,50 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Update</title>
+<title>Mettre à jour un contact</title>
 </head>
 <form method="post" action="UpdateContactServlet">
 		<table>
 			<tr>
-				<th><h2>Voici un premier exemple de composant web avec un servlet</h2></th>
+				<th><h2>Mettre à jour un contact</h2></th>
 				<tr>
-					<td><i>id: <input type="text" name="id" size="25"></i></td>
+					<td><i>id du contact: <input type="text" name="id" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>first name: <input type="text" name="fname" size="25"></i></td>
+					<td><i>Prénom: <input type="text" name="fname" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>last name: <input type="text" name="lname" size="25"></i></td>
+					<td><i>Nom: <input type="text" name="lname" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>email: <input type="text" name="email" size="25"></i></td>
+					<td><i>Email: <input type="text" name="email" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>Country: <input type="text" name="country" size="25"></i></td>
+					<td><i>Pays: <input type="text" name="country" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>City: <input type="text" name="city" size="25"></i></td>
+					<td><i>Ville: <input type="text" name="city" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>zip: <input type="text" name="zip" size="25"></i></td>
+					<td><i>Code postal: <input type="text" name="zip" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>Street: <input type="text" name="street" size="25"></i></td>
+					<td><i>Rue: <input type="text" name="street" size="25"></i></td>
+				</tr>
+				<tr>
+					<td><i>Premier téléphone: <input type="text" name="phoneKind" size="25"></i></td>
+				</tr>
+				<tr>
+					<td><i>Premier numéro de téléphone: <input type="text" name="phoneNumber" size="25"></i></td>
 				</tr>
 								<tr>
-					<td><i>Phonekind: <input type="text" name="phonekind" size="25"></i></td>
+					<td><i>Deuxième téléphone: <input type="text" name="phoneKind2" size="25"></i></td>
 				</tr>
 				<tr>
-					<td><i>PhoneNumber: <input type="text" name="phonenumber" size="25"></i></td>
+					<td><i>Deuxième numéro de téléphone: <input type="text" name="phoneNumber2" size="25"></i></td>
 				</tr>
+				
 				<tr>
-					<td><i>PhoneKind2: <input type="text" name="phonekind2" size="25"></i></td>
-				</tr>
-				<tr>
-					<td><i>PhoneNumber2: <input type="text" name="phonenumber2" size="25"></i></td>
-				</tr>
 				
 				<tr>
 					<td><input class="button" type="submit" value="Submit" /><input class="button" type="reset" value="Reset"></td>
@@ -53,4 +55,6 @@
 			
 		</table>
 	</form>
+	    <br>
+	<a href="menuContact.jsp"><h1>Retour</h1></a>
 </html>

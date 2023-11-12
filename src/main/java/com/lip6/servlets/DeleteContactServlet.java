@@ -1,13 +1,14 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -21,8 +22,6 @@ import com.lip6.services.ServiceContact;
 public class DeleteContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	private IServiceContact serviceContact;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -52,6 +51,9 @@ public class DeleteContactServlet extends HttpServlet {
 		//ServiceContact src=new ServiceContact();
 		IServiceContact service= (ServiceContact) context.getBean("serviceContact");
 		service.deleteContact(id);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("menuContact.jsp");
+        dispatcher.forward(request, response);
 	}
 
 }

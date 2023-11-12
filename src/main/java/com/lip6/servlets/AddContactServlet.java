@@ -4,17 +4,16 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.lip6.daos.IDAOContact;
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
 import com.lip6.entities.PhoneNumber;
@@ -28,8 +27,6 @@ import com.lip6.services.ServiceContact;
 public class AddContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	private IServiceContact serviceContact;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -113,7 +110,8 @@ public class AddContactServlet extends HttpServlet {
         
         service.createContact(c, a, phoneNumbers);
         
-     
+        RequestDispatcher dispatcher = request.getRequestDispatcher("menuContact.jsp");
+        dispatcher.forward(request, response);
 		
 	}   
 

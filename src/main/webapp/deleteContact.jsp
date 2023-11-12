@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Delete</title>
+<title>Supprimer un contact</title>
 </head>
 <form method="post" action="DeleteContactServlet">
 		<table>
 			<tr>
-				<th><h2>Voici un premier exemple de composant web avec un servlet</h2></th>
+				<th><h2>Supprimer un contact</h2></th>
 				<tr>
-					<td><i>id: <input type="text" name="id" size="25"></i></td>
+					<td><i>id du contact: <input type="text" name="id" size="25"></i></td>
 				</tr>
 				
 				<tr>

@@ -2,6 +2,7 @@ package com.lip6.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.lip6.services.IServiceContact;
+import com.lip6.entities.ContactGroup;
 import com.lip6.services.IServiceContactGroup;
-import com.lip6.services.ServiceContact;
 import com.lip6.services.ServiceContactGroup;
 
 @WebServlet("/SearchGroupByIdServelt")
@@ -45,7 +45,15 @@ public class SearchGroupByIdServlet extends HttpServlet {
 		IServiceContactGroup servicegroup= (ServiceContactGroup) context.getBean("serviceContactGroup");
 		servicegroup.searchIDContactGroup(id);
 		
-
+		ContactGroup contactGroup = servicegroup.searchIDContactGroup(id);
+		
+		if (contactGroup != null) {
+	        request.setAttribute("contactgroup", contactGroup); 
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/showGroup.jsp"); 
+	        dispatcher.forward(request, response);
+	    } else {
+	        response.getWriter().write("Aucun groupe trouvé avec l'ID : " + id);
+	    }
 	}
 
 }
