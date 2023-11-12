@@ -29,7 +29,7 @@ public class DAOContact implements IDAOContact {
 	 * @return renvoit le nouveau contact
 	 */
 	
-	public  boolean addContact(Contact c) {
+	public  boolean addContact(Contact c, Address a) {
 
 		//Avant l'utilisation de classe JpaUtil	
 		//EntityManagerFactory emf=Persistence.createEntityManagerFactory("projetJPA");
@@ -46,9 +46,10 @@ public class DAOContact implements IDAOContact {
 		EntityTransaction tx =  em.getTransaction();
 		tx.begin();
 		
+		c.setAddress(a);
+		//a.setContact(c);
 		
-		
-		em.merge(c);
+		em.persist(c);
 		
 		
 		

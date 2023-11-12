@@ -7,6 +7,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.daos.DAOContact;
 import com.lip6.daos.IDAOContact;
+import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
 
 @Service
@@ -21,10 +22,11 @@ public class ServiceContact implements IServiceContact {
 	}
 	
 	
-	public void createContact(Contact c) {
+	public void createContact(Contact c, Address a) {
 		
+		c.setAddress(a);
 	
-		boolean ok=daoc.addContact(c);
+		boolean ok=daoc.addContact(c, a);
 		if (ok)
 			System.out.println("Contact ajout�!");
 		else

@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.daos.IDAOContact;
+import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
 import com.lip6.services.IServiceContact;
 import com.lip6.services.ServiceContact;
@@ -51,6 +52,13 @@ public class AddContactServlet extends HttpServlet {
 		String fname=request.getParameter("fname");
 		String lname=request.getParameter("lname");
 		String email=request.getParameter("email"); 
+		String street=request.getParameter("street");
+		String city=request.getParameter("city");
+		String zip=request.getParameter("zip");
+		String country=request.getParameter("country");
+		
+		//System.out.println("street : " + street);
+		//System.out.println("city: " + city);
 		/*		
 		ServiceContact src=new ServiceContact();
 		src.createContact(id, fname, lname, email);*/
@@ -60,16 +68,26 @@ public class AddContactServlet extends HttpServlet {
         for(String beanName : allBeanNames) {
             System.out.println(beanName + "******************");
         }
-  Contact c= (Contact) context.getBean("Contact2");
-		 c.setEmail(email);
-		 c.setFirstName(fname);
-		 c.setLastName(lname);
-	
-        
+        Contact c= (Contact) context.getBean("Contact2");
+        	c.setEmail(email);
+        	c.setFirstName(fname);
+        	c.setLastName(lname);
+
+		 Address a = (Address) context.getBean("Address");
+		 	a.setCity(city);
+		 	a.setStreet(street);
+		 	a.setCountry(country);
+		 	a.setZip(zip);
+
+		 	c.setAddress(a);
+		 	
+		 	//System.out.println("Adresse avant la persistance : " + a.getCity() + ", " + a.getStreet() + ", " + a.getZip() + ", " + a.getCountry());
+		 	//System.out.println("Adresse associée au contact avant la persistance : " + c.getAddress().getCity() + ", " + c.getAddress().getStreet());
+		 	
         IServiceContact service= (ServiceContact) context.getBean("serviceContact");
         
         
-        service.createContact(c);
+        service.createContact(c, a);
         
      
 		
