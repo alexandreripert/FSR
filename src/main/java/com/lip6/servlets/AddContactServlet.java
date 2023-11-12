@@ -1,6 +1,9 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +17,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.lip6.daos.IDAOContact;
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
+import com.lip6.entities.PhoneNumber;
 import com.lip6.services.IServiceContact;
 import com.lip6.services.ServiceContact;
 
@@ -56,6 +60,10 @@ public class AddContactServlet extends HttpServlet {
 		String city=request.getParameter("city");
 		String zip=request.getParameter("zip");
 		String country=request.getParameter("country");
+	    String phoneKind = request.getParameter("phoneKind");
+	    String phoneNumber = request.getParameter("phoneNumber");
+	    String phoneKind2 = request.getParameter("phoneKind2");
+	    String phoneNumber2 = request.getParameter("phoneNumber2");
 		
 		//System.out.println("street : " + street);
 		//System.out.println("city: " + city);
@@ -81,13 +89,29 @@ public class AddContactServlet extends HttpServlet {
 
 		 	c.setAddress(a);
 		 	
+		    Set<PhoneNumber> phoneNumbers = new HashSet<>();
+		    if (phoneKind != null && phoneNumber != null) {
+		        PhoneNumber p = new PhoneNumber(phoneKind, phoneNumber);
+		        phoneNumbers.add(p);
+		    }
+		    
+		    c.setPhones(phoneNumbers);
+		    
+		    Set<PhoneNumber> phoneNumbers2 = new HashSet<>();
+		    if (phoneKind2 != null && phoneNumber2 != null) {
+		        PhoneNumber p2 = new PhoneNumber(phoneKind2, phoneNumber2);
+		        phoneNumbers.add(p2);
+		    }
+		    
+		    c.setPhones(phoneNumbers2);
+		 	
 		 	//System.out.println("Adresse avant la persistance : " + a.getCity() + ", " + a.getStreet() + ", " + a.getZip() + ", " + a.getCountry());
 		 	//System.out.println("Adresse associée au contact avant la persistance : " + c.getAddress().getCity() + ", " + c.getAddress().getStreet());
 		 	
         IServiceContact service= (ServiceContact) context.getBean("serviceContact");
         
         
-        service.createContact(c, a);
+        service.createContact(c, a, phoneNumbers);
         
      
 		

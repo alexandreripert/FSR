@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
+import com.lip6.entities.PhoneNumber;
 
 public interface IDAOContact {
 

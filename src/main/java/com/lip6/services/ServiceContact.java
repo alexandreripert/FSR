@@ -1,5 +1,7 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import com.lip6.daos.DAOContact;
 import com.lip6.daos.IDAOContact;
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
+import com.lip6.entities.PhoneNumber;
 
 @Service
 public class ServiceContact implements IServiceContact {
@@ -22,9 +25,14 @@ public class ServiceContact implements IServiceContact {
 	}
 	
 	
-	public void createContact(Contact c, Address a) {
+	public void createContact(Contact c, Address a, Set<PhoneNumber> p) {
 		
 		c.setAddress(a);
+		
+		 for(PhoneNumber phone : p) {
+		        phone.setContact(c); //
+		        c.getPhones().add(phone);
+		    }
 	
 		boolean ok=daoc.addContact(c, a);
 		if (ok)
