@@ -14,4 +14,5 @@ public interface IServiceContactGroup {
 	public ContactGroup searchIDContactGroup(long id);
 	public boolean addContactToGroup(long contactId, long groupId);
 	public Set<Contact> listContactsByGroup(long groupId);
+	public boolean removeContactFromGroup(long contactId, long groupId);
 }

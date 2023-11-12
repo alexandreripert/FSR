@@ -1,10 +1,5 @@
 package com.lip6.daos;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -15,8 +10,6 @@ import javax.persistence.TypedQuery;
 
 import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
-import com.lip6.entities.ContactGroup;
-import com.lip6.entities.Messages;
 import com.lip6.entities.PhoneNumber;
 import com.lip6.utils.JpaUtil;
 
@@ -248,115 +241,6 @@ public class DAOContact implements IDAOContact {
 	 * @param firstname
 	 * @return
 	 */
-	@Override
-	public ArrayList<Contact> getContactByFirstName(String firstname) {
 
-		ArrayList<Contact> contacts = new ArrayList<Contact>();
-
-		ResultSet rec = null;
-		Connection con = null;
-		try {
-			Class.forName(Messages.getString("driver"));
-			con = DriverManager.getConnection(Messages.getString("database"), Messages.getString("username"),
-					Messages.getString("password"));
-			Statement stmt = con.createStatement();
-			rec = stmt.executeQuery("SELECT * FROM contacts WHERE firstname = " + "'" + firstname + "'");
-
-			while (rec.next()) {
-				Contact contact = new Contact();
-				contact.setIdContact(Long.parseLong(rec.getString("id")));
-				contact.setFirstName(rec.getString("firstname"));
-				contact.setLastName(rec.getString("lastname"));
-				contact.setEmail(rec.getString("email"));
-
-				contacts.add(contact);
-			}
-
-			stmt.close();
-			rec.close();
-			con.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return contacts;
-	}
-
-	/**
-	 * Renvoit la liste des contacts correspondant au nom lastname
-	 * 
-	 * @param lastname
-	 * @return
-	 */
-	@Override
-	public ArrayList<Contact> getContactByLastName(String lastname) {
-
-		ArrayList<Contact> contacts = new ArrayList<Contact>();
-
-		ResultSet rec = null;
-		Connection con = null;
-		try {
-			Class.forName(Messages.getString("driver"));
-			con = DriverManager.getConnection(Messages.getString("database"), Messages.getString("username"),
-					Messages.getString("password"));
-			Statement stmt = con.createStatement();
-			rec = stmt.executeQuery("SELECT * FROM contacts WHERE lastname = " + "'" + lastname + "'");
-
-			while (rec.next()) {
-				Contact contact = new Contact();
-				contact.setIdContact(Long.parseLong(rec.getString("id")));
-				contact.setFirstName(rec.getString("firstname"));
-				contact.setLastName(rec.getString("lastname"));
-				contact.setEmail(rec.getString("email"));
-				contacts.add(contact);
-			}
-
-			stmt.close();
-			rec.close();
-			con.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return contacts;
-	}
-
-	/**
-	 * Renvoit la liste des contacts correspondant a l'email email
-	 * 
-	 * @param email
-	 * @return
-	 */
-	@Override
-	public ArrayList<Contact> getContactByEmail(String email) {
-		ArrayList<Contact> contacts = new ArrayList<Contact>();
-
-		ResultSet rec = null;
-		Connection con = null;
-		try {
-			Class.forName(Messages.getString("driver"));
-			con = DriverManager.getConnection(Messages.getString("database"), Messages.getString("username"),
-					Messages.getString("password"));
-			Statement stmt = con.createStatement();
-			rec = stmt.executeQuery("SELECT * FROM contacts WHERE email = " + "'" + email + "'");
-
-			while (rec.next()) {
-				Contact contact = new Contact();
-				contact.setIdContact(Long.parseLong(rec.getString("id")));
-				contact.setFirstName(rec.getString("firstname"));
-				contact.setLastName(rec.getString("lastname"));
-				contact.setEmail(rec.getString("email"));
-				contacts.add(contact);
-			}
-
-			stmt.close();
-			rec.close();
-			con.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return contacts;
-	}
 
 }

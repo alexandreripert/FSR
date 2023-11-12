@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import com.lip6.entities.Address;
 import com.lip6.entities.Contact;
 import com.lip6.entities.ContactGroup;
 import com.lip6.utils.JpaUtil;
@@ -176,5 +175,37 @@ public class DAOContactGroup implements IDAOContactGroup {
             em.close();
         }
     }
+	
+	public boolean removeContactFromGroup(long contactId, long groupId) {
+	    EntityManager em = JpaUtil.getEmf().createEntityManager();
+	    EntityTransaction tx = em.getTransaction();
+	    boolean success = false;
+
+	    try {
+	        tx.begin();
+	        
+	        Contact contact = em.find(Contact.class, contactId);
+	        ContactGroup group = em.find(ContactGroup.class, groupId);
+	        
+	        if (group != null && contact != null && group.getContacts().contains(contact)) {
+	            group.getContacts().remove(contact); // Retirer le contact du groupe
+	            contact.getContactGroups().remove(group); // Retirer le groupe du contact si nécessaire
+	            em.merge(group); // Persister les changements
+	            success = true;
+	        }
+	        
+	        tx.commit();
+	    } catch (Exception e) {
+	        if (tx.isActive()) {
+	            tx.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        em.close();
+	    }
+	    
+	    return success;
+	}
+
 
 }

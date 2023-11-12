@@ -12,6 +12,7 @@
 	<a href="updateContactGroup.jsp"><h1>Mettre à jour un groupe</h1></a>
 	<a href="idsearchgroup.jsp"><h1>Rechercher un groupe</h1></a>
 	<a href="addContactToGroup.jsp"><h1>Ajouter un contact à un groupe</h1></a>
+	<a href="removeContactFromGroup.jsp"><h1>Retirer un contact d'un groupe</h1></a>
 	<a href="listContactByGroup.jsp"><h1>Liste des contacts d'un groupe</h1></a>
 	<br>
 	<a href="main.jsp"><h1>Retour</h1></a>

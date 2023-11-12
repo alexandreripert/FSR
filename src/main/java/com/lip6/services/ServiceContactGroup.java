@@ -70,4 +70,8 @@ public boolean addContactToGroup(long contactId, long groupId) {
 public Set<Contact> listContactsByGroup(long groupId) {
     return daocg.getContactsByGroupId(groupId);
 }
+
+public boolean removeContactFromGroup(long contactId, long groupId) {
+    return daocg.removeContactFromGroup(contactId, groupId);
+}
 }
